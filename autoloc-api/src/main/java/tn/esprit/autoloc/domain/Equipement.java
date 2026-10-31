@@ -1,4 +1,6 @@
 package tn.esprit.autoloc.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,6 +18,8 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
+
+    @JsonIgnoreProperties({"equipements", "agence", "reservations"})
     @ManyToMany(
             mappedBy = "equipements",
             fetch = FetchType.LAZY

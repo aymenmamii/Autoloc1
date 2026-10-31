@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -28,6 +29,8 @@ public class Client {
     private String numPermis;
 
     private LocalDate dateInscription;
+
+    @JsonIgnoreProperties({"client", "vehicule", "contrat"})
     @OneToMany(
             mappedBy = "client",
             fetch = FetchType.EAGER,

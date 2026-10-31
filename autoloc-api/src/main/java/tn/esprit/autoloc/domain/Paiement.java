@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,8 @@ public class Paiement {
     private LocalDate datePaiement;
 
     private String modePaiement;
+
+    @JsonIgnoreProperties({"paiements", "reservation", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     private Contrat contrat;
 }

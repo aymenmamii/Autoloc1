@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,10 +24,15 @@ public class Reservation {
 
     private String statut;
 
+    @JsonIgnoreProperties({"reservations", "agence", "equipements"})
     @ManyToOne
     private Vehicule vehicule;
+
+    @JsonIgnoreProperties("reservations")
     @ManyToOne
     private Client client;
+
+    @JsonIgnoreProperties("reservation")
     @OneToOne
     private Contrat contrat;
 }

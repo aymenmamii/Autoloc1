@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,12 +25,16 @@ public class Contrat {
     private BigDecimal montantTotal;
 
     private boolean valide;
+
+    @JsonIgnoreProperties("contrat")
     @OneToMany(
             mappedBy = "contrat",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
     )
     private List<Paiement> paiements;
+
+    @JsonIgnoreProperties({"contrat", "vehicule", "client"})
     @OneToOne(mappedBy = "contrat")
     private Reservation reservation;
 }
